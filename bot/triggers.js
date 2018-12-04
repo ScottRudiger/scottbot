@@ -5,7 +5,11 @@ const msgContainsPineapple = ({text}) =>
 const message = ({text}) =>
   text || '';
 
+const reactionAdded = ({type}) =>
+  type === 'reaction_added';
+
 export {
   msgContainsPineapple,
   message,
+  reactionAdded,
 };

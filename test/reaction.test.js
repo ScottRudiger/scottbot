@@ -2,7 +2,10 @@ import {expect} from 'chai';
 import {stub, restore, match} from 'sinon';
 import request from '../bot/node_modules/request-promise-native';
 
-import {sendFakeSlackMsg} from './mocks/slack';
+import {
+  sendFakeSlackMsg,
+  sendFakeReaction,
+} from './mocks/slack';
 
 describe('auto-reaction feature', () => {
   let postStub;
@@ -67,6 +70,42 @@ describe('auto-reaction feature', () => {
       expect(postStub)
         .to.have.been.calledWithMatch({body: {name: 'confused'}})
         .and.have.been.calledWithMatch({body: {name: 'relaxed'}});
+    });
+  });
+});
+
+describe('duplicate reaction feature', () => {
+  let postStub;
+  beforeEach(() => {
+    postStub = stub(request, 'post').resolves();
+    sendFakeReaction('blue_heart');
+  });
+  afterEach(() => { restore(); });
+  context('should add a reaction for any type of reaction added to a message', () => {
+    it('should trigger a POST request to "reactions.add"', () => {
+      expect(postStub).to.have.been.calledWithMatch({
+        baseUrl: 'https://slack.com/api/',
+        uri: 'reactions.add',
+        headers: {
+          Authorization: match(/^Bearer\sxoxb-.+/),
+        },
+      });
+    });
+
+    it('and include a body with channel, name, and timestamp', () => {
+      expect(postStub).to.have.been.calledWithMatch({
+        body: {
+          channel: match.string,
+          name: match.string,
+          timestamp: match(/^\d+\.\d+$/),
+        },
+      });
+    });
+
+    it('and should add the same reaction as the user', async () => {
+      expect(postStub).to.have.been.calledWithMatch({
+        body: {name: 'blue_heart'},
+      });
     });
   });
 });

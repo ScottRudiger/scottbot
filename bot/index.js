@@ -7,6 +7,7 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
     const {
       trigger,
       addReaction,
+      parrotReaction,
     } = injectDependencies({SLACK_TOKEN, storage, data});
 
     // add a :pineapple: reaction to any message that includes 'pineapple' or '🍍'
@@ -16,6 +17,9 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
     trigger.message.split(/\s|[^\w-]/).filter(Boolean).forEach(
       word => addReaction(word.toLowerCase()),
     );
+
+    // add a reaction for every reaction a user adds to a message (limit 1 per message per type of reaction)
+    if (trigger.reactionAdded) parrotReaction();
   });
   res.end();
 };

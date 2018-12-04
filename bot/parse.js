@@ -13,11 +13,14 @@ export default data => {
     text,
     channel,
     ts: timestamp,
+    reaction,
   } = data.event;
+  if (type === 'reaction_added') var {channel, ts: timestamp} = data.event.item;
   return {
     type,
     text,
     channel,
     timestamp,
+    reaction,
   };
 };
