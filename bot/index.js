@@ -6,6 +6,7 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
   req.on('end', () => {
     const {
       trigger,
+      handle,
       addReaction,
       parrotReaction,
     } = injectDependencies({SLACK_TOKEN, storage, data});
@@ -20,6 +21,11 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // add a reaction for every reaction a user adds to a message (limit 1 per message per type of reaction)
     if (trigger.reactionAdded) parrotReaction();
+
+    /* guess-the-combo game */
+
+    // when user mentions '@<botname> play guess-the-combo' send an interactive message to start the game
+    if (trigger.playGame) handle.playGame();
   });
   res.end();
 };

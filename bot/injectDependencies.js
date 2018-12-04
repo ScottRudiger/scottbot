@@ -1,4 +1,5 @@
 import parse from './parse';
+import getHandlers from './gameLogic/getHandlers';
 import {handleSlackErr} from './gameLogic/handlers/errorHandlers';
 import {
   getRequestDefaults,
@@ -14,6 +15,11 @@ const injectDependencies = ({SLACK_TOKEN, data}) => {
     trigger: applyToTriggers(parsedData),
     addReaction,
     parrotReaction: () => addReaction(parsedData.reaction).catch(handleSlackErr),
+    handle: getHandlers({
+      post,
+      handleSlackErr,
+      ...parsedData,
+    }),
   };
 };
 
