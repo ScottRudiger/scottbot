@@ -17,6 +17,12 @@ const gameStarted = ({type, subtype, text}) =>
 const keypadClick = ({type, callbackId}) =>
   type === 'interactive_message' && callbackId === 'keypad';
 
+const showHelp = ({type, text}) =>
+  type === 'app_mention' && text.includes`help`;
+
+const hideHelp = ({type, callbackId}) =>
+  type === 'interactive_message' && callbackId === 'hide_help';
+
 export {
   msgContainsPineapple,
   message,
@@ -24,4 +30,6 @@ export {
   playGame,
   gameStarted,
   keypadClick,
+  showHelp,
+  hideHelp,
 };

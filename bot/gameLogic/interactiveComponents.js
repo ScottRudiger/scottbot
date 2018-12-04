@@ -15,8 +15,21 @@ const keypad = [
   })),
 }));
 
-/* eslint-disable indent, implicit-arrow-linebreak */
-const getHelpMsg = (botname = '<botname>') =>
+const hideHelpBtn = [{
+  text: '',
+  color: '#3AA3E3',
+  callback_id: 'hide_help',
+  actions: [{
+    text: 'Hide This',
+    id: 1,
+    value: 'hide_help',
+    name: 'hide_help',
+    type: 'button',
+    style: 'danger',
+  }],
+}];
+
+const getHelpMsg = (botname = '<botname>') => [ // eslint-disable-next-line indent
 `Start a new game by typing \`@${botname} play guess-the-combo\`.
 See the ranking by typing \`@${botname} show guess-the-combo rankings\`.
 
@@ -30,7 +43,9 @@ For example, if the solution is 821 you'll receive feedback for guessing like so
 123 ✅: 1 ⚠️: 1
 456 ✅: 0 ⚠️: 0
 182 ✅: 0 ⚠️: 3
-821 ✅: 3 ⚠️: 0`; /* eslint-enable */
+821 ✅: 3 ⚠️: 0`,
+  hideHelpBtn,
+];
 
 const alreadySolvedMsg = 'You already solved this one. :sunglasses:';
 

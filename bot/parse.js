@@ -24,6 +24,7 @@ export default data => {
     user: {id: userId, name: username},
     actions: [{value: clicked}],
     message_ts: timestamp,
+    response_url: responseUrl,
   } = data;
   if (type === 'reaction_added') var {channel, ts: timestamp} = data.event.item;
   return {
@@ -36,6 +37,7 @@ export default data => {
     callbackId,
     username,
     clicked,
+    responseUrl,
     reaction,
   };
 };

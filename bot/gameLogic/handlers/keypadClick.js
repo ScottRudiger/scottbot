@@ -1,11 +1,11 @@
 import sendFeedback from '../sendFeedback';
 import {getHelpMsg, alreadySolvedMsg} from '../interactiveComponents';
 
-const handleKeypadClick = dependencies => () => {
+const handleKeypadClick = dependencies => fakeClick => {
   const {
     postEphemeral,
     storage,
-    clicked,
+    clicked = fakeClick,
     timestamp,
     username,
     handleStorageErr,
@@ -13,7 +13,7 @@ const handleKeypadClick = dependencies => () => {
   const handleErr = err => handleStorageErr(err, handleKeypadClick(dependencies));
   storage.get(async (err, data = {}) => {
     if (err) return handleErr(err);
-    if (clicked === 'help') return postEphemeral(getHelpMsg(data.botname));
+    if (clicked === 'help') return postEphemeral(...getHelpMsg(data.botname));
     let currentGame = data.games[timestamp][username];
     if (!currentGame)
       currentGame = data.games[timestamp][username] = {guess: '', guesses: 0, solved: false};

@@ -32,6 +32,12 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // handle clicks on the keypad (e.g., 1-9 or 'help'); see bot/gameLogic/handlers/keypadClick.js for more
     if (trigger.keypadClick) handle.keypadClick();
+
+    // also show help message when user mentions `@<botname> help`
+    if (trigger.showHelp) handle.keypadClick('help');
+
+    // hide the help message when `Hide This` button is clicked
+    if (trigger.hideHelp) handle.hideHelp();
   });
   res.end();
 };
