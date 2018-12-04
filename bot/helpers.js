@@ -41,6 +41,7 @@ const postToEphemeralUri = ({post, channel, userId}) => (text, attachments) => p
   },
 }).catch(handleSlackErr);
 
+// transform trigger functions to getters simply so bot/index.js can reference them as if they're booleans; e.g., `if (trigger.showRankings)` rather than `if (trigger.showRankings())`
 const applyToTriggers = parsedData => Object.assign({}, Object.values(triggers).reduce(
   (invokedTriggers, trigger) => ({
     ...invokedTriggers,

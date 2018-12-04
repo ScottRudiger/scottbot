@@ -81,7 +81,7 @@ describe('during a single game', () => {
     });
   });
 
-  it('game ranking s/b sorted by # of guesses when multiple players solve', async () => {
+  it('game rankings s/b sorted by # of guesses when multiple players solve', async () => {
     const [player1, player2, player3, player4] = [1, 2, 3, 4].map(createPlayer);
     postStub.resetHistory();
 

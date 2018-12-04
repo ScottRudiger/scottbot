@@ -1,5 +1,5 @@
 import {tryCombo} from './combo';
-import updateRanking from './updateRanking';
+import updateRankings from './updateRankings';
 import {congratulatoryMsg} from './interactiveComponents';
 
 const sendFeedback = ({data, dependencies, currentGame}) => {
@@ -16,8 +16,8 @@ const sendFeedback = ({data, dependencies, currentGame}) => {
     // then, if they solved it
     if (guessedCorrectly) {
       currentGame.solved = true;
-      // update both the current game ranking and the overall ranking
-      updateRanking({data, ...dependencies, currentGame});
+      // update both the current game rankings and the overall rankings
+      updateRankings({data, ...dependencies, currentGame});
       // and send a congratulatory message!!!
       postEphemeral(...congratulatoryMsg);
     }

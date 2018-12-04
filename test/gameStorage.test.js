@@ -74,12 +74,12 @@ describe('during a single game', () => {
 
   it('after solving, user should be added to the current game\'s rankings', async () => {
     await guessRight();
-    expect(currentGame.ranking[0]).to.eql({username, guesses: 1});
+    expect(currentGame.rankings[0]).to.eql({username, guesses: 1});
   });
 
   it('after solving, user should be added to the overall rankings', async () => {
     await guessRight();
-    expect(fakeData.overallRanking[username]).to.eql({
+    expect(fakeData.overallRankings[username]).to.eql({
       totalGuesses: 1,
       totalGames: 1,
     });

@@ -20,6 +20,9 @@ const keypadClick = ({type, callbackId}) =>
 const playAgain = ({type, callbackId}) =>
   type === 'interactive_message' && callbackId === 'play_again';
 
+const showRankings = ({type, text}) =>
+  type === 'app_mention' && text.includes`show guess-the-combo ranking`;
+
 const showHelp = ({type, text}) =>
   type === 'app_mention' && text.includes`help`;
 
@@ -34,6 +37,7 @@ export {
   gameStarted,
   keypadClick,
   playAgain,
+  showRankings,
   showHelp,
   hideHelp,
 };

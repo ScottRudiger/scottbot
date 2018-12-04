@@ -31,7 +31,7 @@ const hideHelpBtn = [{
 
 const getHelpMsg = (botname = '<botname>') => [ // eslint-disable-next-line indent
 `Start a new game by typing \`@${botname} play guess-the-combo\`.
-See the ranking by typing \`@${botname} show guess-the-combo rankings\`.
+See the rankings by typing \`@${botname} show guess-the-combo rankings\`.
 
 The objective of \`guess-the-combo\` (as you might have guessed) is to guess the correct combination.
 Combinations are random three-digit numbers. Each digit is unique in the combination.

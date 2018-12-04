@@ -11,10 +11,10 @@ const {storage: fakeStorage} = fakeContext;
   games: {
     [timestamp]: {
       solution: '812',
-      ranking: [],
+      rankings: [],
     }
   },
-  overallRanking: {},
+  overallRankings: {},
 }
 */
 
@@ -40,10 +40,10 @@ describe('after a game is started for the first time', () => {
   });
 
   it('overall rankings should be initialized', () => {
-    expect(data.overallRanking).to.eql({});
+    expect(data.overallRankings).to.eql({});
   });
 
-  it('current game ranking should be initialized', () => {
-    expect(data.games[timestamp].ranking).to.eql([]);
+  it('current game rankings should be initialized', () => {
+    expect(data.games[timestamp].rankings).to.eql([]);
   });
 });

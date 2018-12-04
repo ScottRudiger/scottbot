@@ -1,14 +1,14 @@
 import {keypad} from './interactiveComponents';
 
-const updateOverallRanking = ({data, username, currentGame}) => {
-  let overallRank = data.overallRanking[username];
+const updateOverallRankings = ({data, username, currentGame}) => {
+  let overallRank = data.overallRankings[username];
   if (!overallRank)
-    overallRank = data.overallRanking[username] = {totalGuesses: 0, totalGames: 0};
+    overallRank = data.overallRankings[username] = {totalGuesses: 0, totalGames: 0};
   overallRank.totalGames++;
   overallRank.totalGuesses += currentGame.guesses;
 };
 
-const updateRanking = ({
+const updateRankings = ({
   data,
   username,
   currentGame,
@@ -17,17 +17,17 @@ const updateRanking = ({
   channel,
   handleSlackErr,
 }) => {
-  updateOverallRanking({data, username, currentGame});
-  const currGameRanking = data.games[timestamp].ranking;
-  currGameRanking.push({username, guesses: currentGame.guesses});
-  currGameRanking.sort((a, b) => a.guesses - b.guesses);
+  updateOverallRankings({data, username, currentGame});
+  const currGameRankings = data.games[timestamp].rankings;
+  currGameRankings.push({username, guesses: currentGame.guesses});
+  currGameRankings.sort((a, b) => a.guesses - b.guesses);
   return post({
     uri: 'chat.update',
     body: {
       channel,
       ts: timestamp,
       link_names: 1,
-      text: currGameRanking.map(
+      text: currGameRankings.map(
         ({username, guesses}, i) => `${
           ['🥇', '🥈', '🥉'][i] || `\u00A0\u2009${i + 1}. ` // unicode whitespace to align
         } @${username} (${guesses} ${guesses === 1 ? 'guess' : 'guesses'})`,
@@ -37,4 +37,4 @@ const updateRanking = ({
   }).catch(handleSlackErr);
 };
 
-export default updateRanking;
+export default updateRankings;

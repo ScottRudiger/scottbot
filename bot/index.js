@@ -41,6 +41,9 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // react to clicks on any 'Start a new game?' button by triggering a new game to start
     if (trigger.playAgain) handle.playAgain();
+
+    // when user types @<botname> show guess-the-combo rankings, post the overall rankings
+    if (trigger.showRankings) handle.showRankings();
   });
   res.end();
 };

@@ -8,11 +8,11 @@ const handleGameStarted = dependencies => () => {
     handleStorageErr,
   } = dependencies;
   const handleErr = err => handleStorageErr(err, handleGameStarted(dependencies));
-  storage.get((err, data = {games: {}, overallRanking: {}, botname: username}) => {
+  storage.get((err, data = {games: {}, overallRankings: {}, botname: username}) => {
     if (err) return handleErr(err);
     data.games[timestamp] = {
       solution: getRandomCombo(),
-      ranking: [],
+      rankings: [],
     };
     storage.set(data, handleErr);
   });
