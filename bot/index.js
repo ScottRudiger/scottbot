@@ -29,6 +29,9 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // after a game is started, create a random combination for users to guess
     if (trigger.gameStarted) handle.gameStarted();
+
+    // handle clicks on the keypad (e.g., 1-9 or 'help'); see bot/gameLogic/handlers/keypadClick.js for more
+    if (trigger.keypadClick) handle.keypadClick();
   });
   res.end();
 };

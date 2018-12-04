@@ -14,10 +14,14 @@ const playGame = ({type, text}) =>
 const gameStarted = ({type, subtype, text}) =>
   type === 'message' && subtype === 'bot_message' && text === 'let\'s play!';
 
+const keypadClick = ({type, callbackId}) =>
+  type === 'interactive_message' && callbackId === 'keypad';
+
 export {
   msgContainsPineapple,
   message,
   reactionAdded,
   playGame,
   gameStarted,
+  keypadClick,
 };

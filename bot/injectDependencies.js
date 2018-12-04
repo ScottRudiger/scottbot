@@ -26,6 +26,7 @@ const injectDependencies = ({SLACK_TOKEN, storage, data}) => {
     handle: getHandlers({
       post,
       storage,
+      postEphemeral,
       handleStorageErr,
       handleSlackErr,
       ...parsedData,
