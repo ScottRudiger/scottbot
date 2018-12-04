@@ -4,6 +4,12 @@ import * as triggers from './triggers';
 import {handleSlackErr} from './gameLogic/handlers/errorHandlers';
 
 const getRequestDefaults = token => ({
+  get: request.defaults({
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'content-type': 'application/x-www-form-urlencoded',
+    },
+  }).get,
   post: request.defaults({
     baseUrl: 'https://slack.com/api/',
     headers: {Authorization: `Bearer ${token}`},

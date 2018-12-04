@@ -1,5 +1,5 @@
 import sendFeedback from '../sendFeedback';
-import {getHelpMsg, alreadySolvedMsg} from '../interactiveComponents';
+import {getHelpMsg, getAlreadySolvedMsg} from '../interactiveComponents';
 
 const handleKeypadClick = dependencies => fakeClick => {
   const {
@@ -19,7 +19,7 @@ const handleKeypadClick = dependencies => fakeClick => {
       currentGame = data.games[timestamp][username] = {guess: '', guesses: 0, solved: false};
     let {guess, solved: alreadySolved} = currentGame;
     // if user clicks the keypad but has already solved it, send a msg letting them know
-    if (alreadySolved) return postEphemeral(alreadySolvedMsg);
+    if (alreadySolved) return postEphemeral(...getAlreadySolvedMsg(data.botname));
     // only register click if user's guess doesn't already include the number
     // (there are no duplicates in the solutions)
     if (guess.includes(clicked)) return;

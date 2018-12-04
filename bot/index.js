@@ -38,6 +38,9 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // hide the help message when `Hide This` button is clicked
     if (trigger.hideHelp) handle.hideHelp();
+
+    // react to clicks on any 'Start a new game?' button by triggering a new game to start
+    if (trigger.playAgain) handle.playAgain();
   });
   res.end();
 };

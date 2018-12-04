@@ -1,3 +1,5 @@
+import qs from 'querystring';
+
 /**
  * - parses Slack API data
  * - filters out relevant nested properties
@@ -7,6 +9,7 @@
  * @returns {Object}
  *//* eslint-disable no-var, vars-on-top, no-redeclare */
 export default data => {
+  if (data.slice(0, 8) === 'payload=') data = qs.parse(data).payload;
   data = JSON.parse(data);
   const {type} = data.event ? data.event : data;
   if (type !== 'interactive_message') var {

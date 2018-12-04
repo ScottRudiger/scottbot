@@ -17,6 +17,9 @@ const gameStarted = ({type, subtype, text}) =>
 const keypadClick = ({type, callbackId}) =>
   type === 'interactive_message' && callbackId === 'keypad';
 
+const playAgain = ({type, callbackId}) =>
+  type === 'interactive_message' && callbackId === 'play_again';
+
 const showHelp = ({type, text}) =>
   type === 'app_mention' && text.includes`help`;
 
@@ -30,6 +33,7 @@ export {
   playGame,
   gameStarted,
   keypadClick,
+  playAgain,
   showHelp,
   hideHelp,
 };

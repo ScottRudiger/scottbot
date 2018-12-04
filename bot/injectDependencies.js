@@ -10,7 +10,7 @@ import {
 
 const injectDependencies = ({SLACK_TOKEN, storage, data}) => {
   const parsedData = parse(data);
-  const {post} = getRequestDefaults(SLACK_TOKEN);
+  const {get, post} = getRequestDefaults(SLACK_TOKEN);
   const addReaction = postToReactionUri({post, ...parsedData});
   const postEphemeral = postToEphemeralUri({post, ...parsedData});
   /**
@@ -24,6 +24,7 @@ const injectDependencies = ({SLACK_TOKEN, storage, data}) => {
     addReaction,
     parrotReaction: () => addReaction(parsedData.reaction).catch(handleSlackErr),
     handle: getHandlers({
+      get,
       post,
       storage,
       postEphemeral,

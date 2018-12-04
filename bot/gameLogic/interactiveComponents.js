@@ -47,14 +47,36 @@ For example, if the solution is 821 you'll receive feedback for guessing like so
   hideHelpBtn,
 ];
 
-const alreadySolvedMsg = 'You already solved this one. :sunglasses:';
+const getNewGameBtn = (text = '') => [{
+  text,
+  color: '#3AA3E3',
+  callback_id: 'play_again',
+  actions: [{
+    text: 'Start a new game?',
+    id: 1,
+    value: 'play_again',
+    name: 'play_again',
+    type: 'button',
+    style: 'primary',
+  }],
+}];
+
+const getAlreadySolvedMsg = botname => [
+  'You already solved this one. :sunglasses:',
+  getNewGameBtn(
+    `Start a new game by typing \`@${botname} play guess-the-combo\`or click below.`,
+  ),
+];
 
 const triplePartyPopper = ':tada:'.repeat(3);
-const congratulatoryMsg = `${triplePartyPopper} Nice job. You guessed the right combo! ${triplePartyPopper}`;
+const congratulatoryMsg = [
+  `${triplePartyPopper} Nice job. You guessed the right combo! ${triplePartyPopper}`,
+  getNewGameBtn(),
+];
 
 export {
   keypad,
   getHelpMsg,
-  alreadySolvedMsg,
+  getAlreadySolvedMsg,
   congratulatoryMsg,
 };

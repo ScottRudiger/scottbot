@@ -19,7 +19,7 @@ const sendFeedback = ({data, dependencies, currentGame}) => {
       // update both the current game ranking and the overall ranking
       updateRanking({data, ...dependencies, currentGame});
       // and send a congratulatory message!!!
-      postEphemeral(congratulatoryMsg);
+      postEphemeral(...congratulatoryMsg);
     }
   });
 };

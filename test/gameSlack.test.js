@@ -9,7 +9,7 @@ import {sendFakeGame} from './mocks/slack';
 import sendFakeClick, {username} from './mocks/slack/sendFakeClick';
 import {
   congratulatoryMsg,
-  alreadySolvedMsg,
+  getAlreadySolvedMsg,
   keypad,
 } from '../bot/gameLogic/interactiveComponents';
 
@@ -54,13 +54,13 @@ describe('during a single game', () => {
   it('upon solving, a congratulatory message s/b sent AFTER feedback', async () => {
     await guessRight();
     expect(postEphemeralStub.firstCall.args[0]).to.match(RegExp(solution.join``));
-    expect(postEphemeralStub.secondCall.args[0]).to.equal(congratulatoryMsg);
+    expect(postEphemeralStub.secondCall.args).to.eql(congratulatoryMsg);
   });
 
   it('if user clicks keypad, but already solved that game, a msg s/b sent letting them know', async () => {
     await guessRight();
     await sendFakeClick(6);
-    expect(postEphemeralStub).to.have.been.calledWith(alreadySolvedMsg);
+    expect(postEphemeralStub).to.have.been.calledWith(...getAlreadySolvedMsg('testbot'));
   });
 
   it('once solved, the original msg s/b updated to show user on game rankings', async () => {
