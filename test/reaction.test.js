@@ -7,6 +7,8 @@ import {
   sendFakeReaction,
 } from './mocks/slack';
 
+const reaction = name => match({body: {name: name.toString()}});
+
 describe('auto-reaction feature', () => {
   let postStub;
   beforeEach(() => { postStub = stub(request, 'post'); });
@@ -37,39 +39,33 @@ describe('auto-reaction feature', () => {
 
     it('and be case-insensitive', async () => {
       await sendFakeSlackMsg('Pinky and the Brain');
-      expect(postStub).to.have.been.calledWithMatch({
-        body: {name: 'brain'},
-      });
+      expect(postStub).to.have.been.calledWith(reaction`brain`);
     });
 
     it('and handle reactions with an underscore', async () => {
       await sendFakeSlackMsg('I was rolling_on_the_floor_laughing');
-      expect(postStub).to.have.been.calledWithMatch({
-        body: {name: 'rolling_on_the_floor_laughing'},
-      });
+      expect(postStub).to.have.been.calledWith(reaction`rolling_on_the_floor_laughing`);
     });
 
     it('and add a reaction for any emojis that are also a reaction', async () => {
       await sendFakeSlackMsg('I :blue_heart: JS');
-      expect(postStub).to.have.been.calledWithMatch({
-        body: {name: 'blue_heart'},
-      });
+      expect(postStub).to.have.been.calledWith(reaction`blue_heart`);
     });
 
     it('and add multiple reactions from one message', async () => {
       await sendFakeSlackMsg('I\'m typing this on an Apple computer');
       expect(postStub)
-        .to.have.been.calledWithMatch({body: {name: 'on'}})
-        .and.to.have.been.calledWithMatch({body: {name: 'apple'}})
-        .and.to.have.been.calledWithMatch({body: {name: 'computer'}});
+        .to.have.been.calledWith(reaction`on`)
+        .and.to.have.been.calledWith(reaction`apple`)
+        .and.to.have.been.calledWith(reaction`computer`);
     });
     it('and handle punctuation', async () => {
       await sendFakeSlackMsg(
         'At first I was confused, but then I figured it out and relaxed.',
       );
       expect(postStub)
-        .to.have.been.calledWithMatch({body: {name: 'confused'}})
-        .and.have.been.calledWithMatch({body: {name: 'relaxed'}});
+        .to.have.been.calledWith(reaction`confused`)
+        .and.have.been.calledWith(reaction`relaxed`);
     });
   });
 });
@@ -103,9 +99,7 @@ describe('duplicate reaction feature', () => {
     });
 
     it('and should add the same reaction as the user', async () => {
-      expect(postStub).to.have.been.calledWithMatch({
-        body: {name: 'blue_heart'},
-      });
+      expect(postStub).to.have.been.calledWith(reaction`blue_heart`);
     });
   });
 });
