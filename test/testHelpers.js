@@ -4,7 +4,7 @@ import {sendFakeClickAsUser} from './mocks/slack/sendFakeClick';
 
 const solution = [8, 1, 2];
 
-const guessWrong = player => AsyncAF([1, 2, 3]).io.forEach(num => (
+const guessWrong = (player = 'scottrudiger') => AsyncAF([1, 2, 3]).io.forEach(num => (
   sendFakeClickAsUser(num, player)
 ));
 
