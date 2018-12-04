@@ -26,6 +26,9 @@ export default ({secrets: {SLACK_TOKEN}, storage}, req, res) => {
 
     // when user mentions '@<botname> play guess-the-combo' send an interactive message to start the game
     if (trigger.playGame) handle.playGame();
+
+    // after a game is started, create a random combination for users to guess
+    if (trigger.gameStarted) handle.gameStarted();
   });
   res.end();
 };

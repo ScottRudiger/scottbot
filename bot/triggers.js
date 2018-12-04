@@ -11,9 +11,13 @@ const reactionAdded = ({type}) =>
 const playGame = ({type, text}) =>
   type === 'app_mention' && text.includes`play guess-the-combo`;
 
+const gameStarted = ({type, subtype, text}) =>
+  type === 'message' && subtype === 'bot_message' && text === 'let\'s play!';
+
 export {
   msgContainsPineapple,
   message,
   reactionAdded,
   playGame,
+  gameStarted,
 };

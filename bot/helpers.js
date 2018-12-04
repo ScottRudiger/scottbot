@@ -1,6 +1,7 @@
 import request from 'request-promise-native';
 
 import * as triggers from './triggers';
+import {handleSlackErr} from './gameLogic/handlers/errorHandlers';
 
 const getRequestDefaults = token => ({
   post: request.defaults({
@@ -23,6 +24,17 @@ const postToReactionUri = ({
   },
 });
 
+const postToEphemeralUri = ({post, channel, userId}) => (text, attachments) => post({
+  uri: 'chat.postEphemeral',
+  body: {
+    channel,
+    text,
+    attachments,
+    user: userId,
+    callback_id: 'guess-the-combo',
+  },
+}).catch(handleSlackErr);
+
 const applyToTriggers = parsedData => Object.assign({}, Object.values(triggers).reduce(
   (invokedTriggers, trigger) => ({
     ...invokedTriggers,
@@ -33,5 +45,6 @@ const applyToTriggers = parsedData => Object.assign({}, Object.values(triggers).
 export {
   getRequestDefaults,
   postToReactionUri,
+  postToEphemeralUri,
   applyToTriggers,
 };

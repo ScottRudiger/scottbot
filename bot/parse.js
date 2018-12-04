@@ -13,6 +13,9 @@ export default data => {
     text,
     channel,
     ts: timestamp,
+    subtype,
+    user: userId,
+    username,
     reaction,
   } = data.event;
   if (type === 'reaction_added') var {channel, ts: timestamp} = data.event.item;
@@ -21,6 +24,9 @@ export default data => {
     text,
     channel,
     timestamp,
+    subtype,
+    userId,
+    username,
     reaction,
   };
 };
