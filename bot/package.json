@@ -1,0 +1,22 @@
+{
+  "name": "scottbot",
+  "version": "1.0.0",
+  "description": "A Slack bot built on Auth0's Webtask",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Webtask",
+    "Auth0",
+    "Slack",
+    "slackbot",
+    "bot"
+  ],
+  "author": "Scott Rudiger",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  }
+}

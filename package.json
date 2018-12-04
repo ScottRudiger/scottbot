@@ -4,6 +4,7 @@
   "description": "A Slack bot built on Auth0's Webtask",
   "main": "bot/index.js",
   "scripts": {
+    "postinstall": "cd bot && npm install",
     "test": "mocha -r @babel/register -r @babel/polyfill --recursive -R nyan --inline-diffs"
   },
   "repository": {
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/ScottRudiger/scottbot#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "chai": "^4.2.0",
     "eslint": "^5.9.0",
@@ -33,5 +35,10 @@
     "mocha": "^5.2.0",
     "sinon": "^7.1.1",
     "sinon-chai": "^3.3.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/node": "^7.2.0",
+    "@babel/preset-env": "^7.2.0"
   }
 }
