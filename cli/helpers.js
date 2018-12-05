@@ -1,6 +1,7 @@
 import {Spinner} from 'clui';
 import {exec} from 'child_process';
 import {promisify} from 'util';
+import {randomString} from 'cryptiles';
 
 import {invalidToken} from './instructions';
 
@@ -26,12 +27,14 @@ const startSpinner = verb => {
 
 const execAsync = promisify(exec);
 
+const hash = randomString(8);
+
 const createWebtask = (file, token) => execAsync(
-  `wt create ${file} --name scottbot --secret SLACK_TOKEN=${token.trim()}`,
+  `wt create ${file} --name scottbot${hash} --secret SLACK_TOKEN=${token.trim()}`,
 );
 
 const updateWebtask = file => execAsync(
-  `wt update scottbot ${file} --ignore-package-json`,
+  `wt update scottbot${hash} ${file} --ignore-package-json`,
 );
 
 export {
