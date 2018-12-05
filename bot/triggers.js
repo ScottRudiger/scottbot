@@ -9,7 +9,7 @@ const reactionAdded = ({type}) =>
   type === 'reaction_added';
 
 const playGame = ({type, text}) => // vague so user has easier time triggering
-  type === 'app_mention' && text.includes`play`;
+  type === 'app_mention' && /play/i.test(text);
 
 const gameStarted = ({type, subtype, text}) =>
   type === 'message' && subtype === 'bot_message' && text === 'let\'s play!';
@@ -21,10 +21,10 @@ const playAgain = ({type, callbackId}) =>
   type === 'interactive_message' && callbackId === 'play_again';
 
 const showRankings = ({type, text}) => // vague so user has easier time triggering
-  type === 'app_mention' && [/show/g, /rank/g].some(regex => regex.test(text));
+  type === 'app_mention' && [/show/i, /rank/i].some(regex => regex.test(text));
 
 const showHelp = ({type, text}) =>
-  type === 'app_mention' && text.includes`help`;
+  type === 'app_mention' && /help/i.test(text);
 
 const hideHelp = ({type, callbackId}) =>
   type === 'interactive_message' && callbackId === 'hide_help';
