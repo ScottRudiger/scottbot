@@ -7,16 +7,14 @@ One thing you can ask Scottbot to do is play a multiplayer game:
 ### Start a game with a mention: `@scottbot play guess-the-combo`.
 
 <img src="http://recordit.co/hbCPxCPEPX.gif" alt="Demonstration of typing '@scottbot help' in Slack"/>
-
-<sub>(Type it more naturally if you like; e.g., `@scottbot play a game please!` As long as it contains the word `play`, a game will start up. 👍)</sub>
+<sup>(Type it more naturally if you like; e.g., `@scottbot play a game please!` As long as it contains the word `play`, a game will start up. 👍)</sup>
 
 <hr>
 
 ### Get some help (`@scottbot help`).
 
 <img src="http://g.recordit.co/vugwpbQ0hu.gif" alt="Demonstration of clicking 'help' button and typing '@scottbot help'"/>
-
-<sub>(`@scottbot HELP MEEEEE!!!` would also work. 🤣 Or, just click the `help` button on any game's keypad.)</sub>
+<sup>(`@scottbot HELP MEEEEE!!!` would also work. 🤣 Or, just click the `help` button on any game's keypad.)</sup>
 
 <hr>
 
@@ -29,8 +27,7 @@ One thing you can ask Scottbot to do is play a multiplayer game:
 ### Check out the rankings: `@scottbot show guess-the-combo rankings`.
 
 <img src="http://g.recordit.co/QUZKCoW4BS.gif" alt="Demonstration of typing '@scottbot show guess-the-combo rankings'"/>
-
-<sub>(In case you forget the exact wording, Scottbot will also reply to `@scottbot What's my rank?` or `@scottbot SHOW ME THE RANKS!!!` If your mention contains either `show` or `rank`, he'll be happy to tell you where you stand compared with the other players. 🥇🥈🥉...🤔)</sub>
+<sup>(In case you forget the exact wording, Scottbot will also reply to `@scottbot What's my rank?` or `@scottbot SHOW ME THE RANKS!!!` If your mention contains either `show` or `rank`, he'll be happy to tell you where you stand compared with the other players. 🥇🥈🥉...🤔)</sup>
 
 <hr>
 
@@ -49,4 +46,4 @@ Scottbot will also react when a Slack message contains any word or emoji that is
 
 <hr>
 
-<div display="inline">If you liked this, check out my <a href="https://github.com/ScottRudiger">other projects</a> and&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=AsyncAF&repo=AsyncAF&type=star&count=false" frameborder="0" scrolling="0" width="160px" height="30px" style="position:absolute"></iframe>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;<iframe src="https://ghbtns.com/github-btn.html?user=ScottRudiger&type=follow&count=false" frameborder="0" scrolling="0" width="160px" height="30px" style="position:absolute"></iframe></div>
+If you liked this, check out my <a href="https://github.com/ScottRudiger">other projects</a> and <a href="https://github.com/AsyncAF/AsyncAF" target=_blank><img src="https://badgen.net/badge//star/blue?icon=github" alt="star one"></a> or <a href="https://github.com/ScottRudiger" target=_blank><img src="https://badgen.net/badge//follow @ScottRudiger/blue?icon=github" alt="follow @ScottRudiger on GitHub"></a>
