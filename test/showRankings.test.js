@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {stub, restore, match} from 'sinon';
+import AsyncAF from 'async-af';
 import request from '../bot/node_modules/request-promise-native';
 
 import {noRankingMsg} from '../bot/gameLogic/handlers/showRankings';
@@ -60,5 +61,21 @@ describe('showRankings', () => {
       {value: /@player4/},
       {value: /4\.00/},
     ].map(field => ({...field, value: match(field.value)})));
+  });
+
+  it('s/b triggered by shorter commands when user forgets the exact wording', async () => {
+    await AsyncAF([
+      'show leaderboard',
+      'show ranks',
+      'what\'s my rank?',
+      'ranking',
+      'rankings',
+      'show',
+      'rank',
+    ]).io.forEach(async cmd => {
+      postStub.resetHistory();
+      await sendFakeAppMention(cmd);
+      expect(postStub).to.have.been.calledWithMatch({uri: 'chat.postMessage'});
+    });
   });
 });

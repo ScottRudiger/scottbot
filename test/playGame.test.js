@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import {stub, restore, match} from 'sinon';
+import AsyncAF from 'async-af';
 import request from '../bot/node_modules/request-promise-native';
 
 import {sendFakeAppMention} from './mocks/slack';
@@ -30,6 +31,14 @@ describe('when user starts a game', () => {
   it('and include a keypad in the attachments', () => {
     expect(postStub).to.have.been.calledWithMatch({
       body: {attachments: keypad},
+    });
+  });
+
+  it('s/b triggered by shorter commands when user forgets the exact wording', async () => {
+    await AsyncAF(['play game', 'play', 'play a game please!']).io.forEach(async cmd => {
+      postStub.resetHistory();
+      await sendFakeAppMention(cmd);
+      expect(postStub).to.have.been.calledWithMatch({uri: 'chat.postMessage'});
     });
   });
 });
